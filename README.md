@@ -4,8 +4,11 @@ Generate memes from the command line like a boss.
 
 ### Usage
 
-./mgen --meme fry --text "not sure if magick or golang" ./path/to/file.png
+```
+go get github.com/montanaflynn/meme-generator
+meme-generator --meme fry --text "not sure if magick or golang" ./meme.png
+```
 
 ### Example
 
-![](http://i.imgur.com/hwpz751.png)
+![](http://i.imgur.com/jVma9Hr.png)
