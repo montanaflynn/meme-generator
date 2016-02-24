@@ -11,4 +11,4 @@ meme-generator --meme fry --text "not sure if magick or golang" ./meme.png
 
 ### Example
 
-![](http://i.imgur.com/jVma9Hr.png)
+![](http://i.imgur.com/a0FXlzq.png)

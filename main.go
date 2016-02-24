@@ -65,8 +65,26 @@ func main() {
 	m := gg.NewContext(w, h)
 	m.DrawImage(img, 0, 0)
 	m.LoadFontFace("/Library/Fonts/Impact.ttf", fontSize)
-	m.SetRGB255(255, 255, 255)
-	m.DrawStringAnchored(*text, float64(w)/2, float64(h)-fontSize, .5, .5)
+
+	// Apply black stroke
+	m.SetHexColor("#000")
+	strokeSize := 6
+	for dy := -strokeSize; dy <= strokeSize; dy++ {
+		for dx := -strokeSize; dx <= strokeSize; dx++ {
+			// give it rounded corners
+			if dx*dx+dy*dy >= strokeSize*strokeSize {
+				continue
+			}
+			x := float64(w/2 + dx)
+			y := float64(h - fontSize + dy)
+			m.DrawStringAnchored(*text, x, y, 0.5, 0.5)
+		}
+	}
+
+	// Apply white fill
+	m.SetHexColor("#FFF")
+	m.DrawStringAnchored(*text, float64(w)/2, float64(h)-fontSize, 0.5, 0.5)
 	m.SavePNG(path)
+
 	fmt.Printf("Saved to %s\n", path)
 }
