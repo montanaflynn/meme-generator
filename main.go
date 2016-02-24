@@ -9,8 +9,6 @@ import (
 	"net/http"
 	"os"
 
-	_ "./vendor/statik"
-
 	"github.com/fogleman/gg"
 )
 
