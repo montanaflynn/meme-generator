@@ -14,8 +14,7 @@ import (
 	"github.com/fogleman/gg"
 )
 
-func LoadImage(file string) image.Image {
-
+func DownloadTemplate(file string) image.Image {
 	url := fmt.Sprintf("https://imgflip.com/s/meme/%s", file)
 	res, err := http.Get(url)
 	if err != nil {
@@ -42,6 +41,9 @@ func main() {
 	memes["aliens"] = "Ancient-Aliens.jpg"
 	memes["doge"] = "Doge.jpg"
 	memes["simply"] = "One-Does-Not-Simply.jpg"
+	memes["wonka"] = "Creepy-Condescending-Wonka.jpg"
+	memes["grumpy"] = "Grumpy-Cat.jpg"
+	memes["raptor"] = "Philosoraptor.jpg"
 
 	if *list {
 		fmt.Println("Available memes:")
@@ -51,14 +53,13 @@ func main() {
 		os.Exit(0)
 	}
 
+	path := "./meme.png"
 	args := flag.Args()
-	if len(args) == 0 {
-		flag.Usage()
+	if len(args) > 0 {
+		path = args[0]
 	}
 
-	path := args[0]
-
-	img := LoadImage(memes[*meme])
+	img := DownloadTemplate(memes[*meme])
 	r := img.Bounds()
 	w := r.Dx()
 	h := r.Dy()
